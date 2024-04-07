@@ -1,0 +1,17 @@
+plugins {
+    id 'java'
+}
+
+group = 'io.github.kristiyan2022.envlint'
+version = '0.1.0'
+sourceCompatibility = JavaVersion.VERSION_1_8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compileOnly 'org.springframework:spring-beans:5.3.33'
+    compileOnly 'org.reflections:reflections:0.10.2'
+    implementation 'org.yaml:snakeyaml:2.2'
+}
