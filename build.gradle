@@ -1,5 +1,6 @@
 plugins {
     id 'java'
+    id 'maven-publish'
 }
 
 group = 'io.github.kristiyan2022.envlint'
@@ -10,8 +11,54 @@ repositories {
     mavenCentral()
 }
 
+
 dependencies {
     compileOnly 'org.springframework:spring-beans:5.3.33'
     compileOnly 'org.reflections:reflections:0.10.2'
     implementation 'org.yaml:snakeyaml:2.2'
+}
+
+publishing {
+    publications {
+        envlint(MavenPublication) {
+            pom {
+                name = 'envlint'
+                licenses {
+                    license {
+                        name = 'Apache License 2.0'
+                        url = 'https://www.apache.org/licenses/LICENSE-2.0.txt'
+                    }
+                }
+                developers {
+                    developer {
+                        id = 'kristiyan2022'
+                        name = 'Kristiyan Tenev'
+                    }
+                }
+                scm {
+                    connection = 'scm:git:git://github.com:kristiyan2022/envlint.git'
+                    developerConnection = 'scm:git:ssh://github.com:kristiyan2022/envlint.git'
+                    url = 'https://github.com/kristiyan2022/envlint'
+                }
+            }
+        }
+    }
+    repositories {
+//        maven {
+//            name = 'OSSRH'
+//            url = System.getenv('MAVEN_PUBLISH_URL')
+//            credentials {
+//                username = System.getenv('MAVEN_USERNAME')
+//                password = System.getenv('MAVEN_PASSWORD')
+//            }
+//        }
+        maven {
+            name = 'GitHubPackages'
+            url = uri('https://maven.pkg.github.com/kristiyan2022/envlint')
+            credentials {
+                username = System.getenv('GH_ACTOR')
+                password = System.getenv('GH_TOKEN')
+            }
+        }
+    }
 }
