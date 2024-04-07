@@ -12,9 +12,13 @@ repositories {
     mavenCentral()
 }
 
-java {
-    withJavadocJar()
-    withSourcesJar()
+task sourceJar(type: Jar) {
+    archiveClassifier = "sources"
+}
+
+task javadocJar(type: Jar) {
+    archiveClassifier = 'javadoc'
+    from javadoc
 }
 
 dependencies {
@@ -26,6 +30,9 @@ dependencies {
 publishing {
     publications {
         envlint(MavenPublication) {
+            from components.java
+            artifact sourceJar
+            artifact javadocJar
             pom {
                 name = 'envlint'
                 licenses {
@@ -49,14 +56,17 @@ publishing {
         }
     }
     repositories {
-//        maven {
-//            name = 'OSSRH'
-//            url = System.getenv('MAVEN_PUBLISH_URL')
-//            credentials {
-//                username = System.getenv('MAVEN_USERNAME')
-//                password = System.getenv('MAVEN_PASSWORD')
-//            }
-//        }
+        maven {
+            name = 'OSSRH'
+            url = System.getenv('MAVEN_PUBLISH_URL')
+            credentials {
+                username = System.getenv('MAVEN_USERNAME')
+                password = System.getenv('MAVEN_PASSWORD')
+            }
+            authentication {
+                basic(BasicAuthentication)
+            }
+        }
         maven {
             name = 'GitHubPackages'
             url = uri('https://maven.pkg.github.com/kristiyan2022/envlint')
