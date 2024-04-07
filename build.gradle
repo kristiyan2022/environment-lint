@@ -4,7 +4,7 @@ plugins {
     id 'signing'
 }
 
-group = 'io.github.kristiyan2022.envlint'
+group = 'io.github.kristiyan2022'
 version = '0.1.0'
 sourceCompatibility = JavaVersion.VERSION_1_8
 
