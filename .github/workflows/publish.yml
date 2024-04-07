@@ -34,7 +34,7 @@ jobs:
           gpg --list-secret-keys --keyid-format LONG
 
       - name: Publish to GitHub Packages
-        run: ./gradlew publish
+        run: ./gradlew publish --stacktrace --info
         env:
           GH_ACTOR: ${{ github.actor }}
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
