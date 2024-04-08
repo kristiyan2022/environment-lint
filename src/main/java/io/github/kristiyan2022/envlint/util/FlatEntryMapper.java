@@ -1,7 +1,5 @@
 package io.github.kristiyan2022.envlint.util;
 
-import org.springframework.util.StringUtils;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -24,7 +22,7 @@ public class FlatEntryMapper implements Mapper<Map.Entry<String, ?>, Map<String,
     @SuppressWarnings("unchecked")
     private static Map<String, String> flattenElement(String prefix, Map.Entry<String, ?> entry) {
         String key = entry.getKey();
-        prefix = StringUtils.hasText(prefix)
+        prefix = prefix != null && !prefix.trim().isEmpty()
                 ? prefix + "." + key
                 : key;
 

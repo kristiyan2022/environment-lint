@@ -1,5 +1,6 @@
 package io.github.kristiyan2022.envlint.util;
 
+import java.util.Collections;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -21,6 +22,10 @@ public class PropertyMapFlattener implements Mapper<Map<String, ?>, Map<String, 
      */
     @Override
     public Map<String, String> map(Map<String, ?> source) {
+        if (source == null) {
+            return Collections.emptyMap();
+        }
+
         return source.entrySet().stream()
                 .map(new FlatEntryMapper(prefix)::map)
                 .flatMap(map -> map.entrySet().stream())

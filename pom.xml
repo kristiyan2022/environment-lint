@@ -6,7 +6,7 @@
 
     <groupId>io.github.kristiyan2022</groupId>
     <artifactId>envlint</artifactId>
-    <version>0.1.0</version>
+    <version>1.0.0</version>
     <description>A lightweight library that can check if all required environment variables have been set.</description>
     <url>https://github.com/kristiyan2022/envlint</url>
     <packaging>jar</packaging>
@@ -42,12 +42,6 @@
     </properties>
 
     <dependencies>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-beans</artifactId>
-            <version>5.3.33</version>
-            <scope>provided</scope>
-        </dependency>
         <dependency>
             <groupId>org.reflections</groupId>
             <artifactId>reflections</artifactId>
